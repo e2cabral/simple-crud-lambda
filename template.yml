@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Sample SAM Template for lambda
+
+Resources:
+  CreateBooks:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/create/ .
+      Handler: app.main
+      Runtime: go1.x
+      Timeout: 30
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /books
+            Method: post
+
+  GetBooks:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/get/ .
+      Handler: app.main
+      Runtime: go1.x
+      Timeout: 30
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /books
+            Method: get
+
+  GetBookById:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/get-by-id/ .
+      Handler: app.main
+      Runtime: go1.x
+      Timeout: 30
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /books/{id}
+            Method: get
+
+  Update:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/update/ .
+      Handler: app.main
+      Runtime: go1.x
+      Timeout: 30
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /books/{id}
+            Method: patch
+
+  Delete:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/delete/ .
+      Handler: app.main
+      Runtime: go1.x
+      Timeout: 30
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /books/{id}
+            Method: delete
